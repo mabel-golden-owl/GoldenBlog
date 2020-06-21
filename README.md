@@ -1,0 +1,2 @@
+# GoldenBlog
+A blog site
