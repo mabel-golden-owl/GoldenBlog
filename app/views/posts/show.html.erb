@@ -1,0 +1,38 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.content %></p>
+<p>Posted by <%= @post.user.email %></p>
+
+<p>
+  <strong><%= @post.likes.count == 0 ? 'Like: ' : @post.likes.count == 1 ? 'Like: ' : 'Likes: ' %></strong>
+  <%= @post.likes.count %>
+</p>
+
+<% pre_like = @post.likes.find { |like| like.user_id == current_user.id } %>
+<% if pre_like %>
+  <%= button_to 'Dislike', post_like_path(@post, pre_like), method: :delete, remote: true %>
+<% else %>
+  <%= button_to 'Like', post_likes_path(@post), remote: true %>
+<% end %>
+<br>
+
+<p>
+  <strong>Comments: </strong><br>
+  <% @post.comments.each do |comment|%>
+    <%= comment.user.email %>:
+    <%= comment.content %>
+    <br>
+  <% end %>
+</p>
+<br>
+
+<%= form_with(model: [@post, Comment.new] ) do |f| %>
+<%= f.label :comment %>
+<br />
+<%= f.text_field :content %>
+<br>
+
+<%= f.submit "Add comment" %>
+<% end %>
+<br>
+
+<%= link_to 'Back', posts_path %>
