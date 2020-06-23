@@ -1,0 +1,96 @@
+AllCops:
+  TargetRubyVersion: 2.6.3
+  Exclude:
+    - .gems/**/*
+    - bin/**/*
+    - config/**/*
+    - db/**/*
+    - log/**/*
+    - public/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - config.ru
+    - Guardfile
+    - Rakefile
+Bundler/OrderedGems:
+  Enabled: false
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+Layout/LineLength:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: aligned
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Metrics/AbcSize:
+  Max: 60
+Metrics/BlockNesting:
+  Max: 4
+Metrics/BlockLength:
+  Max: 50
+  Exclude:
+    - spec/**/*
+Metrics/ClassLength:
+  Max: 250
+Metrics/ModuleLength:
+  Max: 250
+Metrics/MethodLength:
+  Max: 30
+Metrics/ParameterLists:
+  Enabled: false
+Naming/AccessorMethodName:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/AndOr:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/MutableConstant:
+  Enabled: true
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+Style/SingleLineBlockParams:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/GlobalVars:
+  Enabled: false
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: false
+Style/SlicingWithRange:
+  Enabled: false
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+Style/RedundantRegexpEscape:
+  Enabled: false
+Style/RedundantFetchBlock:
+  Enabled: true
