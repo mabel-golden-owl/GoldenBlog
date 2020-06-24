@@ -1,0 +1,6 @@
+cloudinary_cloud: ''
+cloudinary_key: ''
+cloudinary_secret: ''
+
+SENDGRID_USERNAME: ''
+SENDGRID_PASSWORD: ''

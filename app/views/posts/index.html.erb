@@ -1,0 +1,61 @@
+<% if user_signed_in? %>
+  <h1>Hello <strong><%= current_user.email %></strong>, welcome to GoldenBlog!</h1>
+  <h3>Profile</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Avatar</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><%= current_user.first_name %></td>
+        <td><%= current_user.last_name %></td>
+        <td><%= current_user.age %></td>
+        <td><%= current_user.gender %></td>
+        <td><%= image_tag(current_user.avatar.thumb.url) %>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+  <br><br>
+
+  <%= link_to "Add new post", new_post_path, class: 'btn btn-primary' %>
+  <p>Let's share blogs to everyone!</p>
+
+<% else %>
+  <h1>Hello, welcome to GoldenBlog!</h1>
+  <p>Let's share blogs to everyone!</p>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+<br><br>
+
+<h3>Posts</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Image</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @posts.each do |p| %>
+    <tr>
+      <td><%= p.title %></td>
+      <td><%= p.content %></td>
+      <td><%= image_tag(p.image.thumb.url) %></td>
+      <td><%= link_to 'Show post', post_path(p) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
