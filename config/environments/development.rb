@@ -73,4 +73,6 @@ Rails.application.configure do
     password:             ENV['SENDGRID_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true }
+  # Whitelist ngrok connections to development enviroment.
+  config.hosts << /[a-z0-9]+\.ngrok\.io/
 end
