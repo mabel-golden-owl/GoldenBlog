@@ -6,7 +6,9 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def new; end
+  def new
+    @categories = Category.all
+  end
 
   def create
     @post = current_user.posts.build(post_params)
@@ -31,7 +33,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :image)
+    params.require(:post).permit(:title, :content, :image, :category_id)
   end
 
   def prepare_post
