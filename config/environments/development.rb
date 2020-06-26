@@ -75,4 +75,7 @@ Rails.application.configure do
     enable_starttls_auto: true }
   # Whitelist ngrok connections to development enviroment.
   config.hosts << /[a-z0-9]+\.ngrok\.io/
+
+  # Whitelist local tunnel connections to development enviroment.
+  config.hosts << /.*\.serverless\.social/
 end

@@ -8,7 +8,6 @@
   <%= @post.likes.count %>
 </p>
 
-<%# <% pre_like = @post.likes.find { |like| like.user_id == current_user.id } %>
 <% if current_user %>
   <% if @pre_like %>
     <%= button_to 'Dislike', post_like_path(@post, @pre_like), method: :delete, remote: true, class: "btn btn-primary" %>
