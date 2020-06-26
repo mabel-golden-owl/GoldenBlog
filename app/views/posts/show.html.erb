@@ -1,3 +1,7 @@
+<% set_meta_tags og: { title: 'GoldenBlog' } %>
+<% set_meta_tags og: { description: @post.title } %>
+<% set_meta_tags og: { image: @post.image } %>
+
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
 <p><%= image_tag(@post.image.standard.url) %>

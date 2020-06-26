@@ -60,6 +60,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'meta-tags'
 
 # Run against the latest stable release
 group :development, :test do
