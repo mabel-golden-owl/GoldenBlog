@@ -1,24 +1,24 @@
 <h1>New Post</h1>
 
-<%= form_with(model: [ @user, Post.new ]) do |f| %>
+<%= form_with(model: [@user, Post.new]) do |f| %>
 <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
 </p>
 
 <p>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
+  <%= f.label :content %><br>
+  <%= f.text_area :content %>
 </p>
 
 <p>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
 </p>
 
 <p>
-    <%= f.label :category , "Choose a category" %>
-    <%= f.collection_select :category_id, @categories, :id, :name, prompt: "Select Category" %>
+  <%= f.label :category , "Choose a category" %>
+  <%= f.collection_select :category_id, @categories, :id, :name, prompt: "Select Category" %>
 </p>
 
 <%= f.submit %>
