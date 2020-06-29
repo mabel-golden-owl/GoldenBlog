@@ -37,7 +37,7 @@
   <%= link_to "Top Posts", pages_showtop_path, class: 'btn btn-primary' %>
   <% if current_user.role == "admin"%>
     <%= link_to "Users Index", users_index_path, class: 'btn btn-primary' %>
-    <%= link_to "Manage Posts"%>
+    <%= link_to "Manage Posts", posts_manage_path, class: "btn btn-primary" %>
   <% end %>
   <p>Let's share blogs to everyone!</p>
 

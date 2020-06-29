@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   get 'users/index'
   get 'user/:id', to: 'users#show', as: :user
   delete 'user/:id', to: 'users#destroy'
-  get 'pages/showtop'
-  post 'pages/create_posts'
+
   root 'posts#index'
+  get 'posts/manage', to: 'posts#manage'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 

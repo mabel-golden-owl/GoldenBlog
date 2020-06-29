@@ -49,6 +49,9 @@ class PostsController < ApplicationController
     flash[:notice] = 'Post was successfully destroyed.'
   end
 
+  def manage
+  end
+
   private
 
   def post_params
