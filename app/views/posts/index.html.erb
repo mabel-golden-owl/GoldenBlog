@@ -34,7 +34,7 @@
 
   <%= link_to "Add New Post", new_post_path, class: 'btn btn-primary' %>
   <%= link_to "Category", categories_path, class: 'btn btn-primary' %>
-  <%= link_to "Top Posts", pages_showtop_path, class: 'btn btn-primary' %>
+  <%= link_to "Top Posts", top_posts_posts_path, class: 'btn btn-primary' %>
   <% if current_user.role == "admin"%>
     <%= link_to "Users Index", users_index_path, class: 'btn btn-primary' %>
     <%= link_to "Manage Posts", posts_manage_path, class: "btn btn-primary" %>

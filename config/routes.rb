@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
+    get '/top/posts',  controller: 'posts', action: 'top', on: :collection
     resources :comments
+
   end
 
   resources :categories do

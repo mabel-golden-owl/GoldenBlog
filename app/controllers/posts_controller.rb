@@ -52,6 +52,24 @@ class PostsController < ApplicationController
   def manage
   end
 
+  def top
+    @posts = Post.all
+    @posts = if params[:choice] == 'Today'
+               @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_day, Time.now)
+             elsif params[:choice] == 'Week'
+               @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_week, Time.now.end_of_week)
+             elsif params[:choice] == 'Month'
+               @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_month, Time.now.end_of_month)
+             else
+               Post.none
+            end.sort_by { |p| -p.likes.count }.first 2
+
+    respond_to do |format|
+      format.html
+      format.js { render layout: false }
+    end
+  end
+
   private
 
   def post_params
