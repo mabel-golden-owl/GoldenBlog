@@ -35,6 +35,10 @@
   <%= link_to "Add New Post", new_post_path, class: 'btn btn-primary' %>
   <%= link_to "Category", categories_path, class: 'btn btn-primary' %>
   <%= link_to "Top Posts", pages_showtop_path, class: 'btn btn-primary' %>
+  <% if current_user.role == "admin"%>
+    <%= link_to "Users Index", users_index_path, class: 'btn btn-primary' %>
+    <%= link_to "Manage Posts"%>
+  <% end %>
   <p>Let's share blogs to everyone!</p>
 
 <% else %>
@@ -53,7 +57,7 @@
       <th>Title</th>
       <th>Content</th>
       <th>Image</th>
-      <th></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -64,6 +68,10 @@
       <td><%= p.content %></td>
       <td><%= image_tag(p.image.thumb.url) %></td>
       <td><%= link_to 'Show post', post_path(p) %></td>
+      <% if current_user.role == 'admin' %>
+        <td><%= link_to 'Edit post', edit_post_path(p) %></td>
+        <td><%= link_to 'Destroy', post_path(p), method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

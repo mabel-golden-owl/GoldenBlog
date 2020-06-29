@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def new
     @categories = Category.all
+    @post = current_user.posts.build
   end
 
   def create
@@ -20,6 +21,21 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    @categories = Category.all
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: 'Post was successfully updated.'
+    else
+      render :edit, alert: 'Please fill in all field.'
+    end
+  end
+
   def show
     if current_user
       @pre_like = @post.likes.find { |like| like.user_id == current_user.id }
@@ -28,6 +44,9 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+
+    redirect_back(fallback_location: root_path)
+    flash[:notice] = 'Post was successfully destroyed.'
   end
 
   private
