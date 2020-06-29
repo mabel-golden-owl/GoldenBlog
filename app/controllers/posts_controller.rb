@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :prepare_post, only: %i[show destroy]
 
   def index
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: 'Post was successfully created.'
     else
-      render :new
+      redirect_to new_post_path, alert: 'Please fill in all fields.'
     end
   end
 
