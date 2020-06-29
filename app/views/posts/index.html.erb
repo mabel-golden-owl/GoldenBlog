@@ -32,8 +32,9 @@
   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   <br><br>
 
-  <%= link_to "Add new post", new_post_path, class: 'btn btn-primary' %>
+  <%= link_to "Add New Post", new_post_path, class: 'btn btn-primary' %>
   <%= link_to "Category", categories_path, class: 'btn btn-primary' %>
+  <%= link_to "Top Posts", pages_showtop_path, class: 'btn btn-primary' %>
   <p>Let's share blogs to everyone!</p>
 
 <% else %>

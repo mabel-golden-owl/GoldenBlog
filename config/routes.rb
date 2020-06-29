@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/showtop'
+  post 'pages/create_posts'
   root 'posts#index'
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
