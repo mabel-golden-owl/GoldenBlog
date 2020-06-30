@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'posts#index'
   get 'posts/manage', to: 'posts#manage'
 
+  get 'dashboard', to: 'posts#dashboard'
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :posts do

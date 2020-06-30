@@ -36,6 +36,9 @@
   <%= link_to "Category", categories_path, class: 'btn btn-primary' %>
   <%= link_to "Top Posts", top_posts_posts_path, class: 'btn btn-primary' %>
   <%= link_to "Posts Status", status_posts_path, class: 'btn btn-primary' %>
+  <%= link_to "Dashboard", dashboard_path, class: 'btn btn-primary'%>
+  <br><br>
+
   <% if current_user.role == "admin"%>
     <%= link_to "Users Index", users_index_path, class: 'btn btn-primary' %>
     <%= link_to "Manage Posts", posts_manage_path, class: "btn btn-primary" %>
