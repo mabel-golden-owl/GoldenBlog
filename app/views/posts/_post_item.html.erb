@@ -1,0 +1,9 @@
+<% posts = posts || locals[:posts] %>
+<% posts.each do |p|%>
+  <tr>
+    <td><%= p.title %></td>
+    <td><%= p.user.email %></td>
+    <td><%= p.likes.count %></td>
+    <td><%= link_to 'Show post', post_path(p) %></td>
+  </tr>
+<% end %>
