@@ -9,12 +9,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :posts do
+    get '/top/posts',  controller: 'posts', action: 'top', on: :collection
     collection do
-      get :top
+      get :status
     end
-
-    resources :likes
     resources :comments
+    resources :likes
   end
 
   resources :categories do

@@ -1,0 +1,19 @@
+<h1>All Posts Status</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Post Title</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.posts.each do |p| %>
+      <tr>
+        <td><%= p.title %></td>
+        <td><%= p.status == 'New' ? 'Pending' : p.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

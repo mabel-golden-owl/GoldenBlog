@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :prepare_post, only: %i[show destroy]
 
   def index
-    @posts = Post.where(status: "Approved")
+    @posts = Post.where(status: 'Approved')
   end
 
   def new
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   end
 
   def top
-    @posts = Post.all
+    @posts = Post.where(status: 'Approved')
     @posts = if params[:choice] == 'Today'
                @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_day, Time.now)
              elsif params[:choice] == 'Week'
@@ -63,13 +63,15 @@ class PostsController < ApplicationController
                @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_month, Time.now.end_of_month)
              else
                Post.none
-            end.sort_by { |p| -p.likes.count }.first 2
+            end.sort_by { |p| -p.likes.count }.first 3
 
     respond_to do |format|
       format.html
       format.js { render layout: false }
     end
   end
+
+  def status; end
 
   private
 
