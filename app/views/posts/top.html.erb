@@ -1,7 +1,8 @@
 <h1>Top Posts</h1>
 <p>
-  <%= form_for(top_posts_posts_path, method: 'get', html: { class: 'show_top' } ) do %>
+  <%= form_tag(top_posts_path, method: :get, remote: true, class: 'show_top') do |f| %>
     <%= select_tag "choice", options_for_select(["Select a time", "Today", "Week", "Month"], params[:choice]) %>
+    <%= button_tag 'Submit' %>
   <% end %>
 </p>
 

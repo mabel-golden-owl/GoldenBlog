@@ -1,1 +1,1 @@
-jQuery('.table-posts tbody').html('').append("<%= escape_javascript render(:partial => 'posts/post_item', :locals => { :posts => @posts }) %>")
+jQuery('.table-posts tbody').html('').append("<%= escape_javascript render(partial: 'posts/post_item', locals: { :posts => @posts }) %>")

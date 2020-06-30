@@ -64,13 +64,10 @@
   <tbody>
   <% @posts.each do |p| %>
     <tr>
-      <td><%= p.title %></td>
-      <td><%= p.content %></td>
-      <td><%= image_tag(p.image.thumb.url) %></td>
-      <td><%= link_to 'Show post', post_path(p) %></td>
+      <%= render 'post_show', p: p %>
       <% if current_user.role == 'admin' %>
-        <td><%= link_to 'Edit post', edit_post_path(p) %></td>
-        <td><%= link_to 'Destroy', post_path(p), method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %></td>
+        <td><%= link_to 'Edit post', edit_post_path(p), class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Destroy', post_path(p), method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure you want to delete this post?"} %></td>
       <% end %>
     </tr>
   <% end %>

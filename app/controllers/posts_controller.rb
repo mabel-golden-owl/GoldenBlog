@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :prepare_post, only: %i[show destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.where(status: "Approved")
   end
 
   def new
@@ -50,6 +50,7 @@ class PostsController < ApplicationController
   end
 
   def manage
+    @posts = Post.where(status: 'New').order('created_at')
   end
 
   def top
@@ -73,7 +74,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :image, :category_id)
+    params.require(:post).permit(:title, :content, :image, :category_id, :status)
   end
 
   def prepare_post

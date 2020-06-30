@@ -1,0 +1,24 @@
+<h1>Manage Post Requests</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan=2>Image</th>
+      <th colspan=2>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |p| %>
+      <tr>
+        <td><%= p.user.email %></td>
+        <%= render 'post_show', p: p %>
+        <td><%= button_to "Approve", post_path(p.id), method: :patch, params: {post: {status: 'Approved'}}, class: 'btn btn-primary'%></td>
+        <td><%= button_to "Decline", post_path(p.id), method: :patch, params: {post: {status: 'Declined'}}, class: 'btn btn-danger'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

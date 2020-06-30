@@ -17,7 +17,7 @@
     <tr>
       <td><%= post.title %></td>
       <td><%= post.user.email %></td>
-      <td><%= link_to "Show post", post_path(post) %></td>
+      <td><%= link_to "Show post", post_path(post), class: "btn btn-warning"%></td>
     </tr>
     <% end %>
   </tbody>
