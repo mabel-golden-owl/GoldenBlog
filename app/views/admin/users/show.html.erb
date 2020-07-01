@@ -1,0 +1,25 @@
+<h1>Profile: <%= @user.email %></h1>
+
+<div class="panel">
+  <div class="container-fluid">
+    <h3>First name: <%= @user.first_name %></h3>
+    <h3>Last name: <%= @user.last_name %></h3>
+    <h3>Age: <%= @user.age %></h3>
+    <h3>Gender: <%= @user.gender %></h3>
+
+    <h3>Avatar:
+      <% if @user.avatar? %>
+              <td><%= image_tag(@user.avatar.thumb.url) %></td>
+            <% elsif @user.image? %>
+              <td><%= image_tag(@user.image) %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+    </h3>
+
+    <h3>Role: <%= @user.role %></h3>
+  </div>
+</div>
+<br>
+
+<%= link_to 'Back', :back, class: 'btn btn-default'%>

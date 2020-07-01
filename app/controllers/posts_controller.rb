@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :prepare_post, only: %i[show destroy]
 
   def index
+    # if params[:search]
     @posts = Post.where(status: 'Approved')
   end
 
@@ -49,10 +50,6 @@ class PostsController < ApplicationController
     flash[:notice] = 'Post was successfully destroyed.'
   end
 
-  def manage
-    @posts = Post.where(status: 'New').order('created_at')
-  end
-
   def top
     @posts = Post.where(status: 'Approved')
     @posts = if params[:choice] == 'Today'
@@ -73,8 +70,7 @@ class PostsController < ApplicationController
 
   def status; end
 
-  def dashboard
-  end
+  def dashboard; end
 
   private
 

@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'user/:id', to: 'users#show', as: :user
-  delete 'user/:id', to: 'users#destroy'
-
   root 'posts#index'
-  get 'posts/manage', to: 'posts#manage'
-
   get 'dashboard', to: 'posts#dashboard'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
@@ -21,5 +15,9 @@ Rails.application.routes.draw do
 
   resources :categories do
     resources :posts
+  end
+
+  namespace :admin do
+    resources :users, :posts, :categories
   end
 end
