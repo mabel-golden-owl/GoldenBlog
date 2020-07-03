@@ -36,9 +36,4 @@ class User < ApplicationRecord
     user.save
     user
   end
-
-  def admin?
-    current_user.role == 'admin'
-  end
-
 end

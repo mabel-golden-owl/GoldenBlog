@@ -6,8 +6,7 @@ class Admin::UsersController < ApplicationController
     when 'admin'
       @users = User.all
     when 'user'
-      posts_path
-      redirect_to path
+      redirect_to posts_path
     end
   end
 
