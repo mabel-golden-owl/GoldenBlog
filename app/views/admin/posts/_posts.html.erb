@@ -15,10 +15,10 @@
               <td><%= p.title %></td>
               <td><%= link_to 'Show post content', admin_post_path(p.id), class: 'btn btn-warning' %></td>
               <% if p.status == 'New' %>
-                <td><%= button_to "Approve", post_path(p.id), method: :patch, params: {post: {status: 'Approved'}}, class: 'btn btn-primary'%></td>
-                <td><%= button_to "Decline", post_path(p.id), method: :patch, params: {post: {status: 'Declined'}}, class: 'btn btn-danger'%></td>
+                <td><%= button_to "Approve", post_path(p.id), method: :patch, params: { post: { status: 'Approved' } }, class: 'btn btn-primary'%></td>
+                <td><%= button_to "Decline", post_path(p.id), method: :patch, params: { post: {status: 'Declined' } }, class: 'btn btn-danger'%></td>
               <% else %>
-              <td><%= link_to 'Delete post', admin_post_path(p.id), method: :delete, data: {confirm: 'Are you sure you want to delete this user?'}, class: 'btn btn-danger' %></td>
+              <td><%= link_to 'Delete post', admin_post_path(p.id), method: :delete, data: { confirm: 'Are you sure you want to delete this user?' }, class: 'btn btn-danger' %></td>
               <% end %>
             </tr>
           <% end %>

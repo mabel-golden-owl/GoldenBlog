@@ -2,14 +2,20 @@ class Admin::UsersController < ApplicationController
   before_action :prepare_user, only: %i[show destroy]
 
   def index
-    @users = User.all
+    case current_user.role
+    when 'admin'
+      @users = User.all
+    when 'user'
+      posts_path
+      redirect_to path
+    end
   end
 
   def show; end
 
   def destroy
     if @user.destroy
-      flash[:notice] = 'User was successfully deleted'
+      flash[:notice] = 'User was successfully deleted.'
       redirect_back(fallback_location: users_index_path)
     end
   end

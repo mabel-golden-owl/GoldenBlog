@@ -18,8 +18,6 @@ class Admin::PostsController < ApplicationController
     redirect_back(fallback_location: admin_posts_path)
   end
 
-  def manage; end
-
   private
 
   def prepare_post

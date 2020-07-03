@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @category.posts.where(status: 'Approved').each do |post| %>
+    <% @category.posts.approved.each do |post| %>
     <tr>
       <td><%= post.title %></td>
       <td><%= post.user.email %></td>
@@ -22,5 +22,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to "Back", categories_path, class: 'btn btn-default' %>

@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :prepare_post, only: %i[show destroy]
+  before_action :prepare_post, only: %i[edit update show destroy]
 
   def index
-    # if params[:search]
-    @posts = Post.where(status: 'Approved')
+    @posts = Post.approved
   end
 
   def new
@@ -23,13 +22,10 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
     @categories = Category.all
   end
 
   def update
-    @post = Post.find(params[:id])
-
     if @post.update(post_params)
       redirect_to post_path(@post), notice: 'Post was successfully updated.'
     else
@@ -46,12 +42,12 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
 
-    redirect_back(fallback_location: root_path)
     flash[:notice] = 'Post was successfully destroyed.'
+    redirect_back(fallback_location: root_path)
   end
 
   def top
-    @posts = Post.where(status: 'Approved')
+    @posts = Post.approved
     @posts = if params[:choice] == 'Today'
                @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_day, Time.now)
              elsif params[:choice] == 'Week'

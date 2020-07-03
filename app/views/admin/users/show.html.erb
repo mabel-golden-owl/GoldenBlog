@@ -9,17 +9,15 @@
 
     <h3>Avatar:
       <% if @user.avatar? %>
-              <td><%= image_tag(@user.avatar.thumb.url) %></td>
-            <% elsif @user.image? %>
-              <td><%= image_tag(@user.image) %></td>
-            <% else %>
-              <td></td>
-            <% end %>
+        <td><%= image_tag(@user.avatar.thumb.url) %></td>
+      <% elsif @user.image? %>
+        <td><%= image_tag(@user.image) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
     </h3>
 
     <h3>Role: <%= @user.role %></h3>
   </div>
 </div>
 <br>
-
-<%= link_to 'Back', :back, class: 'btn btn-default'%>
