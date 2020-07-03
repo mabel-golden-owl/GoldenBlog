@@ -7,5 +7,5 @@ class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates :title, :content, :image, presence: true
 
-  scope :approved, -> {where(status: 'Approved')}
+  scope :approved, -> { where(status: 'Approved') }
 end
