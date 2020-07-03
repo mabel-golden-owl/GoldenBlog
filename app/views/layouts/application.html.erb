@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <% if current_user.role == 'admin' %>
+    <% if current_user.admin? %>
       <%= render "shared/admin_navbar" %>
     <% end %>
     <% if notice %>

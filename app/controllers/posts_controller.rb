@@ -66,8 +66,6 @@ class PostsController < ApplicationController
 
   def status; end
 
-  def dashboard; end
-
   private
 
   def post_params

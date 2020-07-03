@@ -1,6 +1,5 @@
 class Admin::PostsController < ApplicationController
   before_action :prepare_post, only: %i[show destroy]
-  before_action :prepare_new_posts, only: %i[index]
 
   def index
     @new_posts = prepare_status_posts('New')
