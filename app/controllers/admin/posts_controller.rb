@@ -1,8 +1,9 @@
 class Admin::PostsController < ApplicationController
   before_action :prepare_post, only: %i[show destroy]
-  before_action :prepare_new_posts, only: %i[index manage]
+  before_action :prepare_new_posts, only: %i[index]
 
   def index
+    @new_posts = prepare_status_posts('New')
     @approved_posts = prepare_status_posts('Approved')
     @declined_posts = prepare_status_posts('Declined')
   end
@@ -26,10 +27,6 @@ class Admin::PostsController < ApplicationController
 
   def prepare_status_posts(status)
     Post.where(status: status).order('created_at')
-  end
-
-  def prepare_new_posts
-    @new_posts = prepare_status_posts('New')
   end
 
 end
