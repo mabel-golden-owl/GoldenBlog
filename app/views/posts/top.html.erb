@@ -1,8 +1,7 @@
 <h1>Top Posts</h1>
 <p>
-  <%= form_for(top_posts_posts_path, method: 'get', html: { class: 'show_top' } ) do %>
+  <%= form_tag(top_posts_posts_path, method: :get, class: 'show_top') %>
     <%= select_tag "choice", options_for_select(["Select a time", "Today", "Week", "Month"], params[:choice]) %>
-  <% end %>
 </p>
 
 <strong><%= params[:choice].try('upcase') %></strong>
@@ -19,5 +18,3 @@
     <%= render 'post_item', locals: { posts: @posts } %>
   </tbody>
 </table>
-
-<%= link_to 'Back', root_path %>

@@ -4,6 +4,6 @@
     <td><%= p.title %></td>
     <td><%= p.user.email %></td>
     <td><%= p.likes.count %></td>
-    <td><%= link_to 'Show post', post_path(p) %></td>
+    <td><%= link_to 'Show post', post_path(p), class: 'btn btn-warning' %></td>
   </tr>
 <% end %>

@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :prepare_post, only: %i[show destroy]
+  before_action :prepare_post, only: %i[edit update show destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.approved
   end
 
   def new
     @categories = Category.all
+    @post = current_user.posts.build
   end
 
   def create
@@ -20,6 +21,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @categories = Category.all
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: 'Post was successfully updated.'
+    else
+      render :edit, alert: 'Please fill in all field.'
+    end
+  end
+
   def show
     if current_user
       @pre_like = @post.likes.find { |like| like.user_id == current_user.id }
@@ -28,10 +41,13 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+
+    flash[:notice] = 'Post was successfully destroyed.'
+    redirect_back(fallback_location: root_path)
   end
 
   def top
-    @posts = Post.all
+    @posts = Post.approved
     @posts = if params[:choice] == 'Today'
                @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_day, Time.now)
              elsif params[:choice] == 'Week'
@@ -40,7 +56,7 @@ class PostsController < ApplicationController
                @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_month, Time.now.end_of_month)
              else
                Post.none
-            end.sort_by { |p| -p.likes.count }.first 2
+            end.sort_by { |p| -p.likes.count }.first 3
 
     respond_to do |format|
       format.html
@@ -48,10 +64,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def status; end
+
+  def dashboard; end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :image, :category_id)
+    params.require(:post).permit(:title, :content, :image, :category_id, :status)
   end
 
   def prepare_post

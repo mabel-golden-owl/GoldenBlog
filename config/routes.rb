@@ -1,22 +1,23 @@
 Rails.application.routes.draw do
-  # get 'pages/showtop'
-  # post 'pages/create_posts'
-  root 'posts#index'
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  root 'admin/users#index'
+  get 'dashboard', to: 'posts#dashboard'
 
-  # resources :users
-  resources :posts do
-    resources :likes
-  end
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :posts do
     get '/top/posts',  controller: 'posts', action: 'top', on: :collection
+    collection do
+      get :status
+    end
     resources :comments
-
+    resources :likes
   end
 
   resources :categories do
     resources :posts
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  namespace :admin do
+    resources :users, :posts, :categories
+  end
 end

@@ -13,7 +13,7 @@
     <tr>
       <td><%= category.name %></td>
       <td><%= category.description %></td>
-      <td><%= link_to "Show posts in this category", category_path(category) %></td>
+      <td><%= link_to "Show posts in this category", category_path(category), class: 'btn btn-warning' %></td>
     </tr>
     <% end %>
   </tbody>
@@ -34,5 +34,3 @@
 <% end %>
 
 <br>
-
-<%= link_to "Back", root_path %>
