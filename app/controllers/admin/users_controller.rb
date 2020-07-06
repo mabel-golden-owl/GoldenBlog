@@ -1,13 +1,9 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   before_action :prepare_user, only: %i[show destroy]
+  skip_before_action :check_permission, only: %i[show]
 
   def index
-    case current_user.role
-    when 'admin'
-      @users = User.all
-    when 'user'
-      redirect_to posts_path
-    end
+    @users = User.all
   end
 
   def show; end

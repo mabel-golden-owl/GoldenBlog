@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/229983b9e3.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -17,10 +18,10 @@
     <% else %>
       <%= render "shared/user_navbar" %>
     <% end %>
+
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
-
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'admin/users#index'
+  root 'posts#index'
   get 'dashboard', to: 'posts#dashboard'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get :dashboard, to: 'users#index'
     resources :users, :posts, :categories
   end
 end

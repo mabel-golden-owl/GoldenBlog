@@ -9,15 +9,17 @@
 
     <h3>Avatar:
       <% if @user.avatar? %>
-        <td><%= image_tag(@user.avatar.thumb.url) %></td>
+        <span><%= image_tag(@user.avatar.thumb.url) %></span>
       <% elsif @user.image? %>
-        <td><%= image_tag(@user.image) %></td>
+        <span><%= image_tag(@user.image) %></span>
       <% else %>
-        <td></td>
+        <span></span>
       <% end %>
     </h3>
 
     <h3>Role: <%= @user.role %></h3>
   </div>
 </div>
+
+<%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary' %>
 <br>

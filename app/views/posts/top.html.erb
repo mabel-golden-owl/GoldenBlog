@@ -1,20 +1,13 @@
-<h1>Top Posts</h1>
-<p>
-  <%= form_tag(top_posts_posts_path, method: :get, class: 'show_top') %>
-    <%= select_tag "choice", options_for_select(["Select a time", "Today", "Week", "Month"], params[:choice]) %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <h1>Top Posts</h1>
+      <p>
+        <%= form_tag(top_posts_posts_path, method: :get, class: 'show_top') %>
+        <%= select_tag "choice", options_for_select(["Select a time", "Today", "Week", "Month"], params[:choice]) %>
+      </p>
 
-<strong><%= params[:choice].try('upcase') %></strong>
-<table class="table table-bordered table-posts">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Number of Likes</th>
-      <th>Link</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render 'post_item', locals: { posts: @posts } %>
-  </tbody>
-</table>
+      <%= render 'shared/post_show', p: @posts %>
+    </div>
+  </div>
+</div>
