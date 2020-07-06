@@ -11,7 +11,7 @@ class Admin::UsersController < Admin::BaseController
   def destroy
     if @user.destroy
       flash[:notice] = 'User was successfully deleted.'
-      redirect_back(fallback_location: users_index_path)
+      redirect_back(fallback_location: admin_users_path)
     end
   end
 
