@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get :dashboard, to: 'users#index'
     resources :users, :posts, :categories
   end
 end
