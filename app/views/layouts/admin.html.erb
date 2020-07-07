@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoldenBlog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= display_meta_tags site: 'GoldenBlog' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/229983b9e3.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <% if current_user&.role == 'admin' %>
+      <%= render "shared/admin_navbar" %>
+    <% else %>
+      <%= render "shared/user_navbar" %>
+    <% end %>
+
+    <% if notice %>
+      <p class="alert alert-success" style="text-align: center"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger" style="text-align: center"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

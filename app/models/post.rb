@@ -16,6 +16,6 @@ class Post < ApplicationRecord
                @posts.where(category_id: category_id)
              else
                @posts.where('title LIKE ?', "%#{search}%")
-            end
+             end
   end
 end

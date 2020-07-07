@@ -1,5 +1,5 @@
 class Admin::BaseController < ActionController::Base
-  layout 'application'
+  layout 'admin'
   protect_from_forgery prepend: true
   before_action :authenticate_user!
   before_action :check_permission
