@@ -1,4 +1,4 @@
-class Admin::PostsController < ApplicationController
+class Admin::PostsController < Admin::BaseController
   before_action :prepare_post, only: %i[show destroy]
 
   def index

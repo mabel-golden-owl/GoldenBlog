@@ -4,19 +4,28 @@
 			<a class="navbar-brand" href=<%= admin_users_path %>><span>GoldenBlog</span>Admin</a>
 			<a class="navbar-brand" href=<%= admin_users_path %>><span></span> | </a>
 			<a class="navbar-brand" href=<%= posts_path %>><span>GoldenBlog</span>Home</a>
-			<ul class="nav navbar-top-links navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-						<em class="fa fa-envelope"></em><span class="label label-danger">15</span>
-					</a>
-				</li>
-
-				<li class="dropdown">
-					<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-						<em class="fa fa-bell"></em><span class="label label-info">5</span>
-					</a>
-				</li>
-			</ul>
+			<div class="sayhi">
+					Hello, <a class="sayhi" href=<%= admin_user_path(current_user.id) %>><%= current_user.email %></a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto" style="float: right; margin-top: -20px;">
+						<li class="nav-item">
+							<a class="nav-link marg" href=<%= new_post_path %>>Add New Post</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link marg" href=<%= top_posts_posts_path %>>Top Posts</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link marg" href=<%= categories_path %>>Category</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link marg" href=<%= status_posts_path %>>Posts Status</a>
+						</li>
+						<li class="nav-item">
+							<%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'marg' %>
+						</li>
+					</ul>
+				</div>
 		</div>
 	</div><!-- /.container-fluid -->
 </nav>

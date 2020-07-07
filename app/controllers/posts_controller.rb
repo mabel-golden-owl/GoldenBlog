@@ -1,13 +1,19 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :prepare_approved_posts, only: %i[index top]
   before_action :prepare_post, only: %i[edit update show destroy]
+  before_action :prepare_categories, only: %i[new edit]
 
   def index
-    @posts = Post.approved
+    @posts = Post.search(params[:search]) if params[:search].present?
+
+    respond_to do |format|
+      format.html
+      format.js { render layout: false }
+    end
   end
 
   def new
-    @categories = Category.all
     @post = current_user.posts.build
   end
 
@@ -21,9 +27,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-    @categories = Category.all
-  end
+  def edit; end
 
   def update
     if @post.update(post_params)
@@ -47,7 +51,6 @@ class PostsController < ApplicationController
   end
 
   def top
-    @posts = Post.approved
     @posts = if params[:choice] == 'Today'
                @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_day, Time.now)
              elsif params[:choice] == 'Week'
@@ -64,9 +67,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def status; end
-
-  def dashboard; end
+  def status
+    @posts = current_user.posts
+  end
 
   private
 
@@ -76,5 +79,13 @@ class PostsController < ApplicationController
 
   def prepare_post
     @post = Post.find(params[:id])
+  end
+
+  def prepare_categories
+    @categories = Category.all
+  end
+
+  def prepare_approved_posts
+    @posts = Post.approved
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'admin/users#index'
+  root 'posts#index'
   get 'dashboard', to: 'posts#dashboard'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
