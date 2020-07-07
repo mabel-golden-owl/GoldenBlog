@@ -59,7 +59,7 @@ class PostsController < ApplicationController
                @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_month, Time.now.end_of_month)
              else
                Post.none
-            end.sort_by { |p| -p.likes.count }.first 3
+             end.sort_by { |post| -post.likes.count }.first 3
 
     respond_to do |format|
       format.html

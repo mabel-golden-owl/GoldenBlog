@@ -9,6 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 require("./toplist")
+// const ClassicEditor = require( '@ckeditor/ckeditor5-build-classic' );
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 //= require_tree .
 
 
@@ -18,3 +20,14 @@ require("./toplist")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+document.addEventListener('turbolinks:load', () => {
+  ClassicEditor
+    .create( document.querySelector( 'form > p > textarea' ) )
+    .then( editor => {
+      console.log( editor );
+    } )
+    .catch( error => {
+      console.error( error );
+    } );
+})
