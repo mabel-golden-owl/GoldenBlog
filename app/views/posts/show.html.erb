@@ -3,7 +3,7 @@
 <% set_meta_tags og: { image: @post.image } %>
 
 <h1><%= @post.title %></h1>
-<p><%= @post.content %></p>
+<p><%= @post.content.html_safe %></p>
 <p><%= image_tag(@post.image.standard.url) %>
 <p>Posted by <%= @post.user.email %></p>
 
