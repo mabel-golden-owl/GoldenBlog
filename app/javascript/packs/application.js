@@ -9,8 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 require("./toplist")
-// const ClassicEditor = require( '@ckeditor/ckeditor5-build-classic' );
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 //= require_tree .
 
 
