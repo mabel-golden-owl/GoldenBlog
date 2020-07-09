@@ -20,12 +20,14 @@ require("./toplist")
 // const imagePath = (name) => images(name, true)
 
 document.addEventListener('turbolinks:load', () => {
-  ClassicEditor
-    .create( document.querySelector( 'form > p > textarea' ) )
-    .then( editor => {
-      console.log( editor );
-    } )
-    .catch( error => {
-      console.error( error );
-    } );
+  if(document.querySelector( 'form > p > textarea' )) {
+    ClassicEditor
+      .create( document.querySelector( 'form > p > textarea' ) )
+      .then( editor => {
+        console.log( editor );
+      } )
+      .catch( error => {
+        console.error( error );
+      } );
+  }
 })

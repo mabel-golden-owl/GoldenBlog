@@ -38,9 +38,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    if current_user
-      @pre_like = @post.likes.find { |like| like.user_id == current_user.id }
-    end
+    return if current_user.blank?
+
+    @rating_point = @post.rating_point(current_user) || 0
+    @pre_like = @post.likes.find { |like| like.user_id == current_user.id }
   end
 
   def destroy

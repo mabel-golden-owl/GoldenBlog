@@ -5,7 +5,7 @@
 <div class="post">
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/post-bg.jpg')">
+  <header class="masthead">
   <div class="overlay"></div>
   <div class="container">
     <div class="col-lg-8 col-md-10 mx-auto">
@@ -33,9 +33,15 @@
 
             <% if current_user %>
               <p>Post Rating </p>
-              <div class="rating">
-              <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-              </div>
+              <p class='points'>Points: <%= post_rate(@post) %>/5</p>
+              <form name='post_rating' id="post_rating_form_<%= @post.id %>" method='post' action="<%= post_rates_path(@post) %>">
+                <div class="rating">
+                  <% 5.downto(1).each do |i| %>
+                    <input type="radio" name="rating" value="<%= i %>" id="rating_<%= i %>_post_<%= @post.id %>" <%= i == @rating_point ? 'checked' : '' %>>
+                    <label for="rating_<%= i %>_post_<%= @post.id %>">☆</label>
+                  <% end %>
+                </div>
+              </form>
             <% end %>
 
             <p><strong><%= @post.likes.count == 0 ? 'Like: ' : @post.likes.count == 1 ? 'Like: ' : 'Likes: ' %></strong><%= @post.likes.count %></p>
