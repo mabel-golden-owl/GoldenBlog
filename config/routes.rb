@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     resources :comments
     resources :likes
+    resources :rates, only: :create
   end
 
   resources :categories do

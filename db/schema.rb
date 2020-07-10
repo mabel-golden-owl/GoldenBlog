@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_051949) do
+ActiveRecord::Schema.define(version: 2020_07_08_064648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 2020_06_29_051949) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "rates", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "value"
+    t.index ["post_id"], name: "index_rates_on_post_id"
+    t.index ["user_id"], name: "index_rates_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -89,4 +99,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_051949) do
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
+  add_foreign_key "rates", "posts"
+  add_foreign_key "rates", "users"
 end
