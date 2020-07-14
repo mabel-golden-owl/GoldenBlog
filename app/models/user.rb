@@ -16,13 +16,13 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   def self.find_for_facebook_oauth(auth, _signed_in_resource = nil)
-    user = User.where(provider: auth.provider, uid: auth.uid).first
+    user = User.where(provider: auth.provider, uid: auth.uid).or(User.where(email: auth.info.email)).first
 
     return user if user.present?
 
-    registered_user = User.where(email: auth.info.email).first
+    # registered_user = User.where(email: auth.info.email).first
 
-    return registered_user if registered_user
+    # return registered_user if registered_user
 
     user = User.new(
       name: auth.extra.raw_info.name,

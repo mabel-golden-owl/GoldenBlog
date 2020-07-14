@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many :rates, dependent: :destroy
 
   mount_uploader :image, ImageUploader
-  validates :title, :content, :image, presence: true
+  validates :title, :content, presence: true
 
   scope :approved, -> { where(status: 'Approved') }
 
