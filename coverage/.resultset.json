@@ -833,24 +833,6 @@
           null
         ]
       },
-      "/Users/kaori/Desktop/Work/GO-RoR/GoldenBlog/app/helpers/comments_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/Users/kaori/Desktop/Work/GO-RoR/GoldenBlog/app/helpers/likes_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/Users/kaori/Desktop/Work/GO-RoR/GoldenBlog/app/helpers/posts_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
       "/Users/kaori/Desktop/Work/GO-RoR/GoldenBlog/spec/support/factory_bot.rb": {
         "lines": [
           1,
@@ -1250,6 +1232,6 @@
         ]
       }
     },
-    "timestamp": 1594795861
+    "timestamp": 1594799810
   }
 }

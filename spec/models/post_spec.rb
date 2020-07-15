@@ -69,10 +69,10 @@ RSpec.describe Post, type: :model do
     context 'return value if existed' do
       let(:user) { FactoryBot.create(:user) }
       let(:post) { FactoryBot.create(:post) }
-      let!(:rating_point) { FactoryBot.create(:rate, user: user, post: post) }
+      let!(:rate) { FactoryBot.create(:rate, user: user, post: post) }
 
       it do
-        expect(post.rating_point(user)).to eq rating_point.value
+        expect(post.rating_point(user)).to eq rate.value
       end
     end
 
