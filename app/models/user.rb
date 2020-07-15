@@ -20,10 +20,6 @@ class User < ApplicationRecord
 
     return user if user.present?
 
-    # registered_user = User.where(email: auth.info.email).first
-
-    # return registered_user if registered_user
-
     user = User.new(
       name: auth.extra.raw_info.name,
       provider: auth.provider,
