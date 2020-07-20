@@ -2,17 +2,21 @@ class LikesController < ApplicationController
   before_action :prepare_post, only: %i[create destroy]
 
   def create
-    @post.likes.create(user_id: current_user.id)
-
-    redirect_to post_path(@post)
+    byebug
+    @liked = @post.likes.create(user_id: current_user.id)
   end
 
   def destroy
     @like = Like.find(params[:id])
     @like.destroy
 
-    redirect_to post_path(@post)
+    respond_to do |format|
+      format.html
+      format.js { render layout: false }
+    end
   end
+
+  def show; end
 
   private
 

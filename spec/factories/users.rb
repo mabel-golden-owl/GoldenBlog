@@ -6,5 +6,6 @@ FactoryBot.define do
     password { Faker::Internet.password }
     age { Faker::Number.number(digits: 2) }
     gender { Faker::Gender.type }
+    # confirmed_at { Time.current }
   end
 end

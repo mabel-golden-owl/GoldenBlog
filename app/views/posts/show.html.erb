@@ -44,16 +44,16 @@
                   <% end %>
                 </div>
               </form>
-            <% end %>
 
-            <p><strong><%= @post.likes.count == 0 ? 'Like: ' : @post.likes.count == 1 ? 'Like: ' : 'Likes: ' %></strong><%= @post.likes.count %></p>
+              <p class="like_show"><strong><%= @post.likes.count == 0 ? 'Like: ' : @post.likes.count == 1 ? 'Like: ' : 'Likes: ' %></strong><%= @post.likes.count %></p>
 
-            <% if current_user %>
-              <% if @pre_like %>
-                <%= button_to 'Dislike', post_like_path(@post, @pre_like), method: :delete, remote: true, class: "btn btn-primary" %>
-              <% else %>
-                <%= button_to 'Like', post_likes_path(@post), remote: true, class: "btn btn-primary" %>
-              <% end %>
+              <div class="like-container">
+                <% if @pre_like %>
+                  <%= button_to 'Dislike', post_like_path(@post, @pre_like), method: :delete, remote: true, class: "btn btn-primary" %>
+                <% else %>
+                  <%= button_to 'Like', post_likes_path(@post), method: :post, remote: true, class: "btn btn-primary" %>
+                <% end %>
+              </div>
               <br>
 
               <p>

@@ -19,11 +19,11 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-
     if @post.save
-      redirect_to posts_path, notice: 'Post was successfully created.'
+      redirect_to post_path(@post), notice: 'Post was successfully created.'
     else
-      redirect_to new_post_path, alert: 'Please fill in all fields.'
+      flash[:alert] = 'Please fill in all fields.'
+      render :new
     end
   end
 
@@ -33,7 +33,8 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: 'Post was successfully updated.'
     else
-      render :edit, alert: 'Please fill in all field.'
+      flash[:alert] = 'Please fill in all fields.'
+      render :edit
     end
   end
 
