@@ -1,10 +1,18 @@
 class Admin::PostsController < Admin::BaseController
-  before_action :prepare_post, only: %i[show destroy]
+  before_action :prepare_post, only: %i[edit update show destroy]
 
   def index
     @new_posts = prepare_status_posts('New')
     @approved_posts = prepare_status_posts('Approved')
     @declined_posts = prepare_status_posts('Declined')
+  end
+
+  def edit
+    @categories = Category.all
+  end
+
+  def update
+    @post.update(post_params)
   end
 
   def show
@@ -19,6 +27,10 @@ class Admin::PostsController < Admin::BaseController
   end
 
   private
+
+  def post_params
+    params.require(:post).permit(:title, :content)
+  end
 
   def prepare_post
     @post = Post.find(params[:id])

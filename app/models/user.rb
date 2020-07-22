@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :rates, dependent: :destroy
-  has_many :rate_posts, through: :rates, dependent: :destroy
+  has_many :rate_posts, through: :rates
 
   mount_uploader :avatar, AvatarUploader
   validates :first_name, :last_name, presence: true

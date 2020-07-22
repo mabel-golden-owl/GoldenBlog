@@ -1586,3 +1586,9 @@ p {
 .center {
   text-align: center;
 }
+
+.edit-post {
+  max-width:900px;
+  margin:0 auto;
+  text-align: center;
+}

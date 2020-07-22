@@ -7,10 +7,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     let!(:category1) { FactoryBot.create(:category) }
     let!(:category2) { FactoryBot.create(:category) }
@@ -27,10 +24,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     context 'with valid params' do
       let(:category_params) do
@@ -67,10 +61,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     let!(:category) { FactoryBot.create(:category) }
 

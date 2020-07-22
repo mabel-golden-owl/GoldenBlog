@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'factory' do
     context 'true' do
-      let(:user) { FactoryBot.build(:user) }
+      let!(:user) { FactoryBot.build(:user) }
 
       it { expect(user).to be_valid }
     end
 
     context 'false' do
-      let(:user) { FactoryBot.build(:user, first_name: nil) }
+      let!(:user) { FactoryBot.build(:user, first_name: nil) }
 
       it { expect(user).not_to be_valid }
     end
@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:comments).dependent(:destroy) }
     it { is_expected.to have_many(:categories).dependent(:destroy) }
     it { is_expected.to have_many(:rates).dependent(:destroy) }
-    # it { is_expected.to have_many(:rate_posts).through(:rates).dependent(:destroy) }
+    # it { is_expected.to have_many(:rate_posts).through(:rates) }
   end
 
   describe 'validations' do

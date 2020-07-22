@@ -21,7 +21,7 @@ RSpec.describe Post, type: :model do
     it { is_expected.to have_many(:likes).dependent(:destroy) }
     it { is_expected.to have_many(:comments).dependent(:destroy) }
     it { is_expected.to have_many(:rates).dependent(:destroy) }
-    # it { is_expected.to have_many(:users).through(:rates).dependent(:destroy) }
+    # it { is_expected.to have_many(:user_rated).through(:rate) }
   end
 
   describe 'validations' do

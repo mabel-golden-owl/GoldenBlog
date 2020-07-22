@@ -3,16 +3,29 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
   describe '#index' do
     def do_request
-      get :index
+      get :index, params: { search: search_params }
     end
 
     let!(:post1) { FactoryBot.create(:post, title: 'Test Post1', status: 'Approved') }
     let!(:post2) { FactoryBot.create(:post, title: 'Test Post2', status: 'Approved') }
 
-    it 'should render posts list' do
-      do_request
-      expect(assigns(:posts).size).to eq 2
-      expect(response).to render_template :index
+    context 'with no search' do
+      let(:search_params) { nil }
+
+      it 'should render all posts list' do
+        do_request
+        expect(assigns(:posts).size).to eq 2
+        expect(response).to render_template :index
+      end
+    end
+
+    context 'with search exists' do
+      let(:search_params) { 'Test Post2' }
+
+      it 'should render list contain Test Post2' do
+        do_request
+        expect(assigns(:posts)).to eq([post2])
+      end
     end
   end
 
@@ -22,10 +35,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     it 'should render :new' do
       do_request
@@ -39,10 +49,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     let(:category) { FactoryBot.create(:category) }
     context 'with valid params' do
@@ -80,10 +87,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     let!(:post) { FactoryBot.create(:post, status: 'Approved') }
 
@@ -99,10 +103,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     let!(:category) { FactoryBot.create(:category) }
     let!(:post) { FactoryBot.create(:post, status: 'Approved') }
@@ -142,10 +143,7 @@ RSpec.describe PostsController, type: :controller do
     let!(:post) { FactoryBot.create(:post) }
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     it 'should render :show' do
       do_request
@@ -161,10 +159,7 @@ RSpec.describe PostsController, type: :controller do
     let!(:post) { FactoryBot.create(:post) }
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     it 'should delete post' do
       expect { do_request }.to change { Post.count }.by(-1)
@@ -177,10 +172,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     context 'get :top' do
       it 'should render :top' do
@@ -236,10 +228,7 @@ RSpec.describe PostsController, type: :controller do
 
     let!(:another_user) { FactoryBot.create(:user) }
     let!(:user) { FactoryBot.create(:user) }
-    before do
-      user.confirm
-      sign_in user
-    end
+    before { sign_in user }
 
     let!(:post1) { FactoryBot.create(:post, user: user) }
     let!(:post2) { FactoryBot.create(:post, user: another_user) }
