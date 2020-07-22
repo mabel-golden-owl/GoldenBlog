@@ -7,6 +7,8 @@ class Admin::BaseController < ActionController::Base
   private
 
   def check_permission
-    redirect_to root_path unless current_user.admin?
+    if !current_user.admin?
+      redirect_to root_path, alert: 'You are not authenticated.'
+    end
   end
 end

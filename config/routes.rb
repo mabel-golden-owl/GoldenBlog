@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/show'
   root 'posts#index'
   get 'dashboard', to: 'posts#dashboard'
   get '/admin', to: 'admin/users#index'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+
+  resources :users, only: %i[show]
 
   resources :posts do
     get '/top/posts',  controller: 'posts', action: 'top', on: :collection

@@ -1248,14 +1248,14 @@ a.label:focus {
 }
 
 .profile-usertitle-name {
-  font-size: 20px;
+  font-size: 15px;
   margin-bottom: 0px;
 }
 
 .profile-usertitle-status {
   text-transform: uppercase;
   color: #aaa;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -1584,11 +1584,5 @@ p {
 }
 
 .center {
-  text-align: center;
-}
-
-.edit-post {
-  max-width:900px;
-  margin:0 auto;
   text-align: center;
 }

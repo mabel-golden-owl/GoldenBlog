@@ -1,6 +1,5 @@
 class Admin::UsersController < Admin::BaseController
   before_action :prepare_user, only: %i[edit update show destroy]
-  skip_before_action :check_permission, only: %i[show]
 
   def index
     @users = User.all

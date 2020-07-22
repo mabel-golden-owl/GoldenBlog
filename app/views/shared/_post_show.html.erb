@@ -5,7 +5,7 @@
       <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
     </a>
     <p class="post-meta">Posted by
-      <a href=<%= admin_user_path(post.user.id) %>><%= post.user.email %></a>
+      <a href=<%= user_path(post.user.id) %>><%= post.user.email %></a>
       on <%= post.created_at %><br>
       <% if request.path == '/posts/top/posts' %>
         <strong><%= post.likes.count %> <%= post.likes.count == 1 ? 'like' : post.likes.count == 0 ? 'like' : 'likes' %></strong>
