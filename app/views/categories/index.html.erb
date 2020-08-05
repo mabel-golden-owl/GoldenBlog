@@ -12,8 +12,8 @@
     <% @categories.each do |category|%>
     <tr>
       <td><%= category.name %></td>
-      <td><%= category.description %></td>
-      <td><%= link_to "Show posts in this category", category_path(category), class: 'btn btn-warning' %></td>
+      <td><%= category.description.html_safe %></td>
+      <td><%= link_to "Show posts", category_path(category), class: 'btn btn-warning' %></td>
     </tr>
     <% end %>
   </tbody>

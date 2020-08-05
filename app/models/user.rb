@@ -3,10 +3,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :categories, dependent: :destroy
+  has_many :rates, dependent: :destroy
+  has_many :rate_posts, through: :rates, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name, :last_name, presence: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,13 +16,9 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   def self.find_for_facebook_oauth(auth, _signed_in_resource = nil)
-    user = User.where(provider: auth.provider, uid: auth.uid).first
+    user = User.where(provider: auth.provider, uid: auth.uid).or(User.where(email: auth.info.email)).first
 
     return user if user.present?
-
-    registered_user = User.where(email: auth.info.email).first
-
-    return registered_user if registered_user
 
     user = User.new(
       name: auth.extra.raw_info.name,

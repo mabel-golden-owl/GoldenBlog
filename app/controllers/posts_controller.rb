@@ -19,11 +19,11 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-
     if @post.save
-      redirect_to posts_path, notice: 'Post was successfully created.'
+      redirect_to post_path(@post), notice: 'Post was successfully created.'
     else
-      redirect_to new_post_path, alert: 'Please fill in all fields.'
+      flash[:alert] = 'Please fill in all fields.'
+      render :new
     end
   end
 
@@ -33,14 +33,16 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: 'Post was successfully updated.'
     else
-      render :edit, alert: 'Please fill in all field.'
+      flash[:alert] = 'Please fill in all fields.'
+      render :edit
     end
   end
 
   def show
-    if current_user
-      @pre_like = @post.likes.find { |like| like.user_id == current_user.id }
-    end
+    return if current_user.blank?
+
+    @rating_point = @post.rating_point(current_user) || 0
+    @pre_like = @post.likes.find { |like| like.user_id == current_user.id }
   end
 
   def destroy
@@ -59,7 +61,7 @@ class PostsController < ApplicationController
                @posts.where('created_at BETWEEN ? AND ?', Time.now.beginning_of_month, Time.now.end_of_month)
              else
                Post.none
-            end.sort_by { |p| -p.likes.count }.first 3
+             end.sort_by { |post| -post.likes.count }.first 3
 
     respond_to do |format|
       format.html
