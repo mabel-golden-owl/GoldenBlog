@@ -9,23 +9,23 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <script src="https://kit.fontawesome.com/229983b9e3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
   </head>
 
   <body>
-    <% if current_user&.role == 'admin' %>
-      <%= render "shared/admin_navbar" %>
+    <% if current_user %>
+      <%= render "shared/navbar" %>
     <% else %>
-      <%= render "shared/user_navbar" %>
+      <%= render "shared/guest_navbar"%>
     <% end %>
 
-    <% if notice %>
-      <p class="alert alert-success" style="text-align: center"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger" style="text-align: center"><%= alert %></p>
-    <% end %>
+    <%= render "shared/notice" %>
 
     <%= yield %>
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>

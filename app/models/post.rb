@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   belongs_to :category
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :users, through: :rates, dependent: :destroy
+  has_many :rates, dependent: :destroy
 
   mount_uploader :image, ImageUploader
   validates :title, :content, :image, presence: true
@@ -17,5 +19,9 @@ class Post < ApplicationRecord
              else
                @posts.where('title LIKE ?', "%#{search}%")
              end
+  end
+
+  def rating_point(user)
+    rates.find_by(user_id: user.id)&.value
   end
 end

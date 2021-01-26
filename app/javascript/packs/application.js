@@ -18,3 +18,16 @@ require("./toplist")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+document.addEventListener('turbolinks:load', () => {
+  if(document.querySelector( 'form > p > textarea' )) {
+    ClassicEditor
+      .create( document.querySelector( 'form > p > textarea' ) )
+      .then( editor => {
+        console.log( editor );
+      } )
+      .catch( error => {
+        console.error( error );
+      } );
+  }
+})

@@ -7,7 +7,7 @@
         <%= select_tag "choice", options_for_select(["Select a time", "Today", "Week", "Month"], params[:choice]) %>
       </p>
 
-      <%= render 'shared/post_show', p: @posts %>
+      <%= render 'shared/post_show', posts: @posts %>
     </div>
   </div>
 </div>

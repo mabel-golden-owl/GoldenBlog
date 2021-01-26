@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'posts#index'
   get 'dashboard', to: 'posts#dashboard'
+  get '/admin', to: 'admin/users#index'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :comments
     resources :likes
+    resources :rates, only: :create
   end
 
   resources :categories do
